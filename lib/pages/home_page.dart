@@ -1,5 +1,6 @@
 import 'package:codigo6_shared/widgets/my_drawer_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,10 +12,16 @@ class _HomePageState extends State<HomePage> {
   String name = "";
   int age = 0;
 
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+
   Future<void> save() async {
     SharedPreferences mandarina = await SharedPreferences.getInstance();
-    mandarina.setString("name", "Daniel Montes");
-    mandarina.setInt("age", 30);
+    mandarina.setString("name", _nameController.text);
+    mandarina.setString("address", _addressController.text);
+    mandarina.setString("email", _emailController.text);
+    // mandarina.setInt("age", 30);
     print("Guadando...");
   }
 
@@ -46,6 +53,10 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextField(
+                  controller: _nameController,
+                  // inputFormatters: [
+                  //   FilteringTextInputFormatter.allow(RegExp("[A-Za-z]")),
+                  // ],
                   decoration: InputDecoration(
                     hintText: "Nombre completo",
                   ),
@@ -54,6 +65,7 @@ class _HomePageState extends State<HomePage> {
                   height: 10.0,
                 ),
                 TextField(
+                  controller: _addressController,
                   decoration: InputDecoration(
                     hintText: "Dirección",
                   ),
@@ -62,9 +74,13 @@ class _HomePageState extends State<HomePage> {
                   height: 10.0,
                 ),
                 TextField(
+                  controller: _emailController,
                   decoration: InputDecoration(
                     hintText: "Correo electrónico",
                   ),
+                ),
+                const SizedBox(
+                  height: 20.0,
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -74,26 +90,26 @@ class _HomePageState extends State<HomePage> {
                     "Guardar",
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    getData();
-                  },
-                  child: Text(
-                    "Obtener",
-                  ),
-                ),
-                Text(
-                  name,
-                ),
-                FutureBuilder(
-                  future: getName(),
-                  builder: (BuildContext context, AsyncSnapshot snap) {
-                    if (snap.hasData) {
-                      return Text(snap.data);
-                    }
-                    return CircularProgressIndicator();
-                  },
-                ),
+                // ElevatedButton(
+                //   onPressed: () {
+                //     getData();
+                //   },
+                //   child: Text(
+                //     "Obtener",
+                //   ),
+                // ),
+                // Text(
+                //   name,
+                // ),
+                // FutureBuilder(
+                //   future: getName(),
+                //   builder: (BuildContext context, AsyncSnapshot snap) {
+                //     if (snap.hasData) {
+                //       return Text(snap.data);
+                //     }
+                //     return CircularProgressIndicator();
+                //   },
+                // ),
               ],
             ),
           ),
