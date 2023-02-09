@@ -1,7 +1,11 @@
 import 'package:codigo6_shared/pages/home_page.dart';
+import 'package:codigo6_shared/utils/sp_global.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SPGlobal spGlobal = SPGlobal();
+  await spGlobal.initSharedPreferences();
   runApp(MyApp());
 }
 

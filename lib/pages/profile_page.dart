@@ -1,3 +1,4 @@
+import 'package:codigo6_shared/utils/sp_global.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,12 +19,13 @@ class _ProfilePageState extends State<ProfilePage> {
     getData();
   }
 
-  getData() async {
+  getData() {
     //Obterner los datos del shared preferences
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    name = prefs.getString("name") ?? "No disponible";
-    address = prefs.getString("address") ?? "No disponible";
-    email = prefs.getString("email") ?? "No disponible";
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // name = prefs.getString("name") ?? "No disponible";
+    name = SPGlobal().name;
+    // address = prefs.getString("address") ?? "No disponible";
+    // email = prefs.getString("email") ?? "No disponible";
     setState(() {});
   }
 
@@ -37,7 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Mi Perfil",
+                "Mi Perfil:: ${SPGlobal().name}",
                 style: TextStyle(
                   fontSize: 30.0,
                   fontWeight: FontWeight.w600,

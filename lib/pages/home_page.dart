@@ -1,3 +1,4 @@
+import 'package:codigo6_shared/utils/sp_global.dart';
 import 'package:codigo6_shared/widgets/my_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,14 +17,12 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 
-  Future<void> save() async {
-    SharedPreferences mandarina = await SharedPreferences.getInstance();
-    mandarina.setString("name", _nameController.text);
-    mandarina.setString("address", _addressController.text);
-    mandarina.setString("email", _emailController.text);
-
-    // mandarina.setInt("age", 30);
-    print("Guadando...");
+  void save() {
+    // SharedPreferences mandarina = await SharedPreferences.getInstance();
+    // mandarina.setString("name", _nameController.text);
+    // mandarina.setString("address", _addressController.text);
+    // mandarina.setString("email", _emailController.text);
+    SPGlobal().name = "Juan Manuel Gonzales";
   }
 
   Future<void> getData() async {
