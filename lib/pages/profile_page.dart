@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -6,6 +7,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  String name = "";
+  String address = "";
+  String email = "";
+
   @override
   void initState() {
     // TODO: implement initState
@@ -13,8 +18,13 @@ class _ProfilePageState extends State<ProfilePage> {
     getData();
   }
 
-  getData() {
+  getData() async {
     //Obterner los datos del shared preferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    name = prefs.getString("name") ?? "No disponible";
+    address = prefs.getString("address") ?? "No disponible";
+    email = prefs.getString("email") ?? "No disponible";
+    setState(() {});
   }
 
   @override
@@ -35,7 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               Divider(),
               Text(
-                "Elvis Barrionuevo",
+                name,
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w500,
@@ -53,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 20,
               ),
               Text(
-                "Av. Lima 12323",
+                address,
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w500,
@@ -71,7 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 20,
               ),
               Text(
-                "idadad@gmail.com",
+                email,
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w500,

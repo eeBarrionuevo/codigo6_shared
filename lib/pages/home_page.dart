@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
     mandarina.setString("name", _nameController.text);
     mandarina.setString("address", _addressController.text);
     mandarina.setString("email", _emailController.text);
+
     // mandarina.setInt("age", 30);
     print("Guadando...");
   }
